@@ -1,20 +1,18 @@
 # Blocks
 
-***
-
 Stores and updates information about a [user's][users] block list.
 
 | Endpoint | Description |
 | ---- | --------------- |
-| [GET /users/:login/blocks](/v3_resources/blocks.md#get-usersloginblocks) | Get user's block list |
-| [PUT /users/:user/blocks/:target](/v3_resources/blocks.md#put-usersuserblockstarget) | Update user's block list |
-| [DELETE /users/:user/blocks/:target](/v3_resources/blocks.md#delete-usersuserblockstarget) | Update user's block list |
+| [GET /users/:user/blocks](/v3_resources/blocks.md#get-usersloginblocks) | Get user's block list |
+| [PUT /users/:user/blocks/:target](/v3_resources/blocks.md#put-usersuserblockstarget) | Add target to user's block list |
+| [DELETE /users/:user/blocks/:target](/v3_resources/blocks.md#delete-usersuserblockstarget) | Delete target from user's block list |
 
 [users]: /v3_resources/users.md
 
-## `GET /users/:login/blocks`
+## `GET /users/:user/blocks`
 
-Returns a list of blocks objects on `:login`'s block list. List sorted by recency, newest first.
+Returns a list of blocks objects on `:user`'s block list. List sorted by recency, newest first.
 
 *__Authenticated__*, required scope: `user_blocks_read`
 
@@ -72,7 +70,8 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
         },
         "updated_at": "2013-02-06T22:44:19Z",
         "display_name": "test_user_troll",
-        "staff": false,
+        "type": "user",
+        "bio": "I'm a troll.. Kappa",
         "name": "test_user_troll",
         "_id": 13460644,
         "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user_troll-profile_image-9e4de45c9e6744ac-300x300.png",
@@ -112,7 +111,8 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
     },
     "updated_at": "2013-01-18T22:33:55Z",
     "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user_troll-profile_image-c3fa99f314dd9477-300x300.jpeg",
-    "staff": false,
+    "type": "user",
+    "bio": "I'm a troll.. Kappa",
     "display_name": "test_user_troll",
     "name": "test_user_troll",
     "_id": 22125774,

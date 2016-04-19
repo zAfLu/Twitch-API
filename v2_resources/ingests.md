@@ -1,7 +1,5 @@
 # Ingests
 
-***
-
 These are RTMP ingest points. By directing an RTMP stream with your `stream_key` injected into the `url_template`, you will broadcast your content live on Twitch.
 
 | Endpoint | Description |
@@ -28,11 +26,11 @@ curl -H 'Accept: application/vnd.twitchtv.v2+json' \
   },
   "ingests": [
     {
-      "name": "EU: Amsterdam, NL" ,
-      "default": false ,
-      "_id": 24 ,
+      "name": "EU: Amsterdam, NL",
+      "default": false,
+      "_id": 24,
       "url_template": "rtmp://live-ams.twitch.tv/app/{stream_key}",
-      "availability":1.0
+      "availability": 1.0
     },
     ...
   ]

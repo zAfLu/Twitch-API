@@ -1,19 +1,18 @@
 # Channels
 
-***
-
 Channels serve as the home location for a [user's][users] content. Channels have a [stream][streams], can run commercials, store [videos][], display information and status, and have a customized page including banners and backgrounds.
 
 | Endpoint | Description |
 | ---- | --------------- |
 | [GET /channels/:channel](/v3_resources/channels.md#get-channelschannel) | Get channel object|
 | [GET /channel](/v3_resources/channels.md#get-channel) | Get channel object |
-| [GET /channels/:channel/editors](/v3_resources/channels.md#get-channelschanneleditors) | Get channel's list of editors |
-| [PUT /channels/:channel](/v3_resources/channels.md#put-channelschannel) | Update channel object |
 | [GET /channels/:channel/videos](/v3_resources/channels.md#get-channelschannelvideos) | Get channel's list of videos |
 | [GET /channels/:channel/follows](/v3_resources/channels.md#get-channelschannelfollows) | Get channel's list of following users |
+| [GET /channels/:channel/editors](/v3_resources/channels.md#get-channelschanneleditors) | Get channel's list of editors |
+| [PUT /channels/:channel](/v3_resources/channels.md#put-channelschannel) | Update channel object |
 | [DELETE /channels/:channel/stream_key](/v3_resources/channels.md#delete-channelschannelstream_key) | Reset channel's stream key |
 | [POST /channels/:channel/commercial](/v3_resources/channels.md#post-channelschannelcommercial) | Start a commercial on channel |
+| [GET /channels/:channel/teams](/v3_resources/channels.md#get-channelschannelteams) | Get list of teams channel belongs to |
 
 [users]: /v3_resources/users.md
 [streams]: /v3_resources/streams.md
@@ -27,48 +26,46 @@ Returns a channel object.
 
 ```bash
 curl -H 'Accept: application/vnd.twitchtv.v3+json' \
--X GET https://api.twitch.tv/kraken/channels/test_user1
+-X GET https://api.twitch.tv/kraken/channels/test_channel
 ```
 
 ### Example Response
 
 ```json
 {
-  "name": "test_user1",
-  "game": "World of Warcraft: Cataclysm",
-  "created_at": "2011-02-24T01:38:43Z",
-  "delay": 0,
-  "teams": [{
-    "name": "staff",
-    "created_at": "2011-10-25T23:55:47Z",
-    "updated_at": "2011-11-14T19:48:21Z",
-    "background": null,
-    "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/team-staff-banner_image-1e028d6b6aec8e6a-640x125.jpeg",
-    "logo": null,
-    "_links": {
-      "self": "https://api.twitch.tv/kraken/teams/staff"
-    },
-    "_id": 10,
-    "info": "We save the world..",
-    "display_name": "TwitchTV Staff"
-  }],
-  "status": "test_user1",
-  "updated_at": "2012-06-18T05:22:53Z",
-  "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_header_image-7d10ec1bfbef2988-640x125.png",
-  "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_offline_image-bdcb1260130fa0cb.png",
-  "background": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_background_image-eebc4eabf0686bb9.png",
+  "mature": false,
+  "status": "test status",
+  "broadcaster_language": "en",
+  "display_name": "test_channel",
+  "game": "Gaming Talk Shows",
+  "delay": null,
+  "language": "en",
+  "_id": 12345,
+  "name": "test_channel",
+  "created_at": "2007-05-22T10:39:54Z",
+  "updated_at": "2015-02-12T04:15:49Z",
+  "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+  "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+  "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+  "background": null,
+  "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+  "profile_banner_background_color": "null",
+  "partner": true,
+  "url": "http://www.twitch.tv/test_channel",
+  "views": 49144894,
+  "followers": 215780,
   "_links": {
-    "self": "https://api.twitch.tv/kraken/channels/test_user1",
-    "chat": "https://api.twitch.tv/kraken/chat/test_user1",
-    "videos": "https://api.twitch.tv/kraken/channels/test_user1/videos",
-    "video_status": "https://api.twitch.tv/kraken/channels/test_user1/video_status",
-    "commercial": "https://api.twitch.tv/kraken/channels/test_user1/commercial"
-  },
-  "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-profile_image-7243b004a2ec3720-300x300.png",
-  "_id": 20694610,
-  "mature": true,
-  "url": "http://www.twitch.tv/test_user1",
-  "display_name": "test_user1"
+    "self": "https://api.twitch.tv/kraken/channels/test_channel",
+    "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+    "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+    "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+    "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+    "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+    "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+    "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+    "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+    "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+  }
 }
 ```
 
@@ -89,53 +86,51 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
 
 ```json
 {
-  "game": "Diablo II: Lord of Destruction",
-  "name": "test_user1",
-  "stream_key": "live_21229404_abcdefg",
-  "created_at": "2011-03-19T15:42:22Z",
-  "delay": 0,
-  "status": "Cev",
-  "updated_at": "2012-03-14T03:30:41Z",
-  "teams": [{
-    "name": "staff",
-    "created_at": "2011-10-25T23:55:47Z",
-    "updated_at": "2011-11-14T19:48:21Z",
-    "background": null,
-    "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/team-staff-banner_image-1e028d6b6aec8e6a-640x125.jpeg",
-    "logo": null,
-    "_links": {
-      "self": "https://api.twitch.tv/kraken/teams/staff"
-    },
-    "_id": 10,
-    "info": "We save the world..",
-    "display_name": "TwitchTV Staff"
-  }],
-  "_links": {
-    "self": "https:/api.twitch.tv/kraken/channels/test_user1",
-    "chat":"https:/api.twitch.tv/kraken/chat/test_user1",
-    "videos": "https://api.twitch.tv/kraken/channels/test_user1/videos",
-    "video_status": "https://api.twitch.tv/kraken/channels/test_user1/video_status",
-    "commercial":"https:/api.twitch.tv/kraken/channels/test_user1/commercial"
-  },
-  "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_header_image-7d10ec1bfbef2988-640x125.png",
-  "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_offline_image-bdcb1260130fa0cb.png",
-  "background": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_background_image-eebc4eabf0686bb9.png",
-  "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-profile_image-7243b004a2ec3720-300x300.png",
-  "id": 21229404,
   "mature": false,
-  "login": "test_user1",
-  "url": "http://www.twitch.tv/test_user1",
-  "email": "test_user1@justin.tv"
+  "status": "test status",
+  "broadcaster_language": "en",
+  "display_name": "test_channel",
+  "game": "Gaming Talk Shows",
+  "delay": null,
+  "language": "en",
+  "_id": 12345,
+  "name": "test_channel",
+  "created_at": "2007-05-22T10:39:54Z",
+  "updated_at": "2015-02-12T04:15:49Z",
+  "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+  "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+  "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+  "background": null,
+  "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+  "profile_banner_background_color": "null",
+  "partner": true,
+  "url": "http://www.twitch.tv/test_channel",
+  "views": 49144894,
+  "followers": 215780,
+  "_links": {
+    "self": "https://api.twitch.tv/kraken/channels/test_channel",
+    "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+    "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+    "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+    "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+    "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+    "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+    "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+    "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+    "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+  },
+  "email": "test_channel@twitch.tv",
+  "stream_key": "live_5439587_s8df7s9d7g6dsfggsdfg"
 }
 ```
 
 ## `GET /channels/:channel/videos`
 
-See the [Videos](https://github.com/justintv/Twitch-API/wiki/Videos-Resource#wiki-videos-channel) resource.
+See the [Videos](videos.md#get-channelschannelvideos) resource.
 
 ## `GET /channels/:channel/follows`
 
-See the [Follows](follows.md#get-a-channels-list-of-followers-) resource.
+See the [Follows](follows.md#get-channelschannelfollows) resource.
 
 ## `GET /channels/:channel/editors`
 
@@ -147,7 +142,7 @@ Returns a list of user objects who are editors of `:channel`.
 
 ```bash
 curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <access_token>' \
--X GET https://api.twitch.tv/kraken/channels/test_user1/editors
+-X GET https://api.twitch.tv/kraken/channels/test_channel/editors
 ```
 
 ### Example Response
@@ -155,20 +150,21 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
 ```json
 {
   "_links": {
-    "self": "http://api.twitch.tv/kraken/channels/test_user1/editors"
+    "self": "http://api.twitch.tv/kraken/channels/test_channel/editors"
   },
   "users": [
     {
       "_links": {
-        "self": "http://staging.twitch.tv/kraken/users/test_user_editor1"
+        "self": "http://staging.twitch.tv/kraken/users/test_channel_editor"
       },
       "created_at": "2013-02-06T21:21:57Z",
-      "name": "test_user_editor1",
+      "name": "test_channel_editor",
       "updated_at": "2013-02-13T20:59:42Z",
       "_id": 40091581,
-      "display_name": "test_user_editor1",
+      "display_name": "test_channel_editor",
       "logo": null,
-      "staff": false
+      "type": "user",
+      "bio": "I am a test editor"
     },
     ...
   ]
@@ -177,7 +173,7 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
 
 ## `PUT /channels/:channel/`
 
-Update channel's status or game.
+Update channel's properties.
 
 *__Authenticated__*, required scope: `channel_editor`
 
@@ -211,6 +207,12 @@ Update channel's status or game.
             <td>string</td>
             <td>Channel delay in seconds. Requires the channel owner's OAuth token.</td>
         </tr>
+        <tr>
+            <td><code>channel_feed_enabled</code></td>
+            <td>optional</td>
+            <td>boolean</td>
+            <td>Whether the channel's feed is enabled. Requires the channel owner's OAuth token.</td>
+        </tr>
     </tbody>
 </table>
 
@@ -221,7 +223,8 @@ Form-encoded or JSON parameters specifying the properties to change. These shoul
   "channel": {
     "status": "Playing cool new game!",
     "game": "Diablo",
-    "delay": 60
+    "delay": 60,
+    "channel_feed_enabled": false
     }
 }
 ```
@@ -231,50 +234,52 @@ Form-encoded or JSON parameters specifying the properties to change. These shoul
 ```bash
 curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <access_token>' \
 -d "channel[status]=Playing+cool+new+game!&channel[game]=Diablo&channel[delay]=0" \
--X PUT https://api.twitch.tv/kraken/channels/test_user1
+-X PUT https://api.twitch.tv/kraken/channels/test_channel
 ```
 
 ### Example Response
 
 ```json
 {
-  "name": "test_user1",
-  "game": "Diablo",
-  "created_at": "2011-02-24T01:38:43Z",
-  "delay": 0,
-  "teams": [{
-    "name": "staff",
-    "created_at": "2011-10-25T23:55:47Z",
-    "updated_at": "2011-11-14T19:48:21Z",
-    "background": null,
-    "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/team-staff-banner_image-1e028d6b6aec8e6a-640x125.jpeg",
-    "logo": null,
-    "_links": {
-      "self": "https://api.twitch.tv/kraken/teams/staff"
-    },
-    "_id": 10,
-    "info": "We save the world..",
-    "display_name": "TwitchTV Staff"
-  }],
+  "mature": false,
   "status": "Playing cool new game!",
-  "updated_at": "2012-06-18T05:22:53Z",
-  "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_header_image-7d10ec1bfbef2988-640x125.png",
-  "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_offline_image-bdcb1260130fa0cb.png",
-  "background": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-channel_background_image-eebc4eabf0686bb9.png",
+  "broadcaster_language": "en",
+  "display_name": "test_channel",
+  "game": "Diablo",
+  "delay": null,
+  "language": "en",
+  "_id": 12345,
+  "name": "test_channel",
+  "created_at": "2007-05-22T10:39:54Z",
+  "updated_at": "2015-02-12T04:15:49Z",
+  "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+  "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+  "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+  "background": null,
+  "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+  "profile_banner_background_color": "null",
+  "partner": true,
+  "url": "http://www.twitch.tv/test_channel",
+  "views": 49144894,
+  "followers": 215780,
   "_links": {
-    "self": "https://api.twitch.tv/kraken/channels/test_user1",
-    "chat": "https://api.twitch.tv/kraken/chat/test_user1",
-    "videos": "https://api.twitch.tv/kraken/channels/test_user1/videos",
-    "video_status": "https://api.twitch.tv/kraken/channels/test_user1/video_status",
-    "commercial": "https://api.twitch.tv/kraken/channels/test_user1/commercial"
-  },
-  "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_user1-profile_image-7243b004a2ec3720-300x300.png",
-  "_id": 20694610,
-  "mature": true,
-  "url": "http://www.twitch.tv/test_user1",
-  "display_name": "test_user1"
+    "self": "https://api.twitch.tv/kraken/channels/test_channel",
+    "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+    "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+    "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+    "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+    "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+    "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+    "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+    "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+    "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+  }
 }
 ```
+
+### Errors
+
+`422 Unprocessable Entity` if trying to set `delay` for a channel that is not partnered.
 
 ## `DELETE /channels/:channel/stream_key`
 
@@ -286,12 +291,50 @@ Resets channel's stream key.
 
 ```bash
 curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <access_token>' \
--X DELETE https://api.twitch.tv/kraken/channels/test_user1/stream_key
+-X DELETE https://api.twitch.tv/kraken/channels/test_channel/stream_key
 ```
 
 ### Example Response
 
-`204 No Content`.
+```json
+{
+  "mature": false,
+  "status": "test status",
+  "broadcaster_language": "en",
+  "display_name": "test_channel",
+  "game": "Gaming Talk Shows",
+  "delay": null,
+  "language": "en",
+  "_id": 12345,
+  "name": "test_channel",
+  "created_at": "2007-05-22T10:39:54Z",
+  "updated_at": "2015-02-12T04:15:49Z",
+  "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+  "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+  "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+  "background": null,
+  "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+  "profile_banner_background_color": "null",
+  "partner": true,
+  "url": "http://www.twitch.tv/test_channel",
+  "views": 49144894,
+  "followers": 215780,
+  "_links": {
+    "self": "https://api.twitch.tv/kraken/channels/test_channel",
+    "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+    "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+    "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+    "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+    "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+    "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+    "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+    "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+    "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+  },
+  "email": "test_channel@twitch.tv",
+  "stream_key": "live_5439587_s8df7s9d7g6dsfggsdfg"
+}
+```
 
 ## `POST /channels/:channel/commercial`
 
@@ -315,7 +358,7 @@ Start commercial on channel.
             <td><code>length</code></td>
             <td>optional</td>
             <td>integer</td>
-            <td>Length of commercial break in seconds. Default value is 30. Valid values are 30, 60, 90, 120, 150 or 180. You can only trigger a commercial once every 8 minutes.</td>
+            <td>Length of commercial break in seconds. Default value is 30. Valid values are 30, 60, 90, 120, 150, and 180. You can only trigger a commercial once every 8 minutes.</td>
         </tr>
     </tbody>
 </table>
@@ -324,7 +367,7 @@ Start commercial on channel.
 
 ```bash
 curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <access_token>' \
--d "length=30" -X POST https://api.twitch.tv/kraken/channels/test_user1/commercial
+-d "length=30" -X POST https://api.twitch.tv/kraken/channels/test_channel/commercial
 ```
 
 ### Example Response
@@ -333,4 +376,42 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
 
 ### Errors
 
-`422 Unprocessable Entity` if commercial length not allowed.
+`422 Unprocessable Entity` if commercial length not allowed, a commercial was ran less than 8 minutes ago, or the channel is not partnered.
+
+## `GET /channels/:channel/teams`
+
+Returns a list of team objects `:channel` belongs to.
+
+### Example Request
+
+```bash
+curl -H 'Accept: application/vnd.twitchtv.v3+json' \
+-X GET https://api.twitch.tv/kraken/channels/test_channel/teams
+```
+
+### Example Response
+
+```json
+{
+  "_links": {
+    "self": "http://api.twitch.tv/kraken/channels/test_channel/teams"
+  },
+  "teams": [
+    {
+      "_links": {
+        "self": "https://api.twitch.tv/kraken/teams/staff"
+      },
+      "_id": 10,
+      "name": "staff",
+      "info": "We save the world..\n\n\n",
+      "display_name": "Twitch Staff",
+      "created_at": "2011-10-25T23:55:47Z",
+      "updated_at": "2013-05-24T00:17:12Z",
+      "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/team-staff-team_logo_image-e26f89ac4f424216-300x300.png",
+      "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/team-staff-banner_image-c81e25b281c06e8f-640x125.png",
+      "background": null
+    },
+    ...
+  ]
+}
+```

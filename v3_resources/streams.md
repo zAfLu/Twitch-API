@@ -1,7 +1,5 @@
 # Streams
 
-***
-
 Streams are video broadcasts that are currently live. They have a [broadcaster][users] and are part of a [channel][channels].
 
 | Endpoint | Description |
@@ -49,46 +47,58 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' \
     "self": "https://api.twitch.tv/kraken/streams/test_channel"
   },
   "stream": {
-    "_links": {
-      "self": "https://api.twitch.tv/kraken/streams/test_channel"
+    "game": "StarCraft II: Heart of the Swarm",
+    "viewers": 2123,
+    "average_fps": 29.9880749574,
+    "delay": 0,
+    "video_height": 720,
+    "is_playlist": false,
+    "created_at": "2015-02-12T04:42:31Z",
+    "_id": 4989654544,
+    "channel": {
+      "mature": false,
+      "status": "test status",
+      "broadcaster_language": "en",
+      "display_name": "test_channel",
+      "game": "StarCraft II: Heart of the Swarm",
+      "delay": null,
+      "language": "en",
+      "_id": 12345,
+      "name": "test_channel",
+      "created_at": "2007-05-22T10:39:54Z",
+      "updated_at": "2015-02-12T04:15:49Z",
+      "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+      "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+      "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+      "background": null,
+      "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+      "profile_banner_background_color": "null",
+      "partner": true,
+      "url": "http://www.twitch.tv/test_channel",
+      "views": 49144894,
+      "followers": 215780,
+      "_links": {
+        "self": "https://api.twitch.tv/kraken/channels/test_channel",
+        "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+        "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+        "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+        "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+        "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+        "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+        "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+        "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+        "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+      }
     },
     "preview": {
-      "medium": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_user1-320x200.jpg",
-      "small": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_user1-80x50.jpg",
-      "large": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_user1-640x400.jpg",
-      "template": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_user1-{width}x{height}.jpg"
+      "small": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-80x45.jpg",
+      "medium": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-320x180.jpg",
+      "large": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-640x360.jpg",
+      "template": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-{width}x{height}.jpg"
     },
-    "_id": 4869165040,
-    "viewers": 11754,
-    "channel": {
-      "display_name": "test_channel",
-      "_links": {
-        "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
-        "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
-        "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
-        "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
-        "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos",
-        "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
-        "self": "https://api.twitch.tv/kraken/channels/test_channel",
-        "chat": "https://api.twitch.tv/kraken/chat/test_channel",
-        "features": "https://api.twitch.tv/kraken/channels/test_channel/features"
-      },
-      "teams": [ ],
-      "status": "Testing 1 2 3",
-      "created_at": "2011-12-23T18:03:44Z",
-      "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-1806cdccb1108442-300x300.jpeg",
-      "updated_at": "2013-02-15T15:22:24Z",
-      "mature": null,
-      "video_banner": null,
-      "_id": 26991613,
-      "background": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_background_image-21fffe7f0c309a23.jpeg",
-      "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-4eb6147d464d9053-640x125.jpeg",
-      "name": "test_channel",
-      "delay": 0,
-      "url": "http://www.twitch.tv/test_channel",
-      "game": "Magic: The Gathering"
-    },
-    "game": "Magic: The Gathering"
+    "_links": {
+      "self": "https://api.twitch.tv/kraken/streams/test_channel"
+    }
   }
 }
 ```
@@ -134,22 +144,16 @@ Returns a list of stream objects that are queried by a number of parameters sort
             <td>Object offset for pagination. Default is 0.</td>
         </tr>
         <tr>
-            <td><code>embeddable</code></td>
-            <td>optional</td>
-            <td>bool</td>
-            <td>If set to true, only returns streams that can be embedded</td>
-        </tr>
-        <tr>
-            <td><code>hls</code></td>
-            <td>optional</td>
-            <td>bool</td>
-            <td>If set to true, only returns streams using HLS</td>
-        </tr>
-        <tr>
             <td><code>client_id</code></td>
             <td>optional</td>
             <td>string</td>
-            <td>Only shows streams from applications of <code>client_id</code></td>
+            <td>Only shows streams from applications of <code>client_id</code>.</td>
+        </tr>
+        <tr>
+            <td><code>stream_type</code></td>
+            <td>optional</td>
+            <td>string</td>
+            <td>Only shows streams from a certain type. Permitted values: <code>all</code>, <code>playlist</code>, <code>live</code></td>
         </tr>
     </tbody>
 </table>
@@ -158,7 +162,7 @@ Returns a list of stream objects that are queried by a number of parameters sort
 
 ```bash
 curl -H 'Accept: application/vnd.twitchtv.v3+json' \
--X GET https://api.twitch.tv/kraken/streams?game=Diablo+III&channel=zisss,voyboy
+-X GET https://api.twitch.tv/kraken/streams?game=StarCraft+II%3A+Heart+of+the+Swarm&channel=test_channel,test_channel2
 ```
 
 ### Example Response
@@ -168,54 +172,67 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' \
   "_total": 12345,
   "streams": [
     {
-      "_id": 5019229776,
-      "preview": {
-        "medium": "http://static-cdn.jtvnw.net/previews-ttv/live_user_zisss-320x200.jpg",
-        "small": "http://static-cdn.jtvnw.net/previews-ttv/live_user_zisss-80x50.jpg",
-        "large": "http://static-cdn.jtvnw.net/previews-ttv/live_user_zisss-640x400.jpg",
-        "template": "http://static-cdn.jtvnw.net/previews-ttv/live_user_zisss-{width}x{height}.jpg"
-      },
-      "game": "Diablo III",
+      "game": "StarCraft II: Heart of the Swarm",
+      "viewers": 2123,
+      "average_fps": 29.9880749574,
+      "delay": 0,
+      "video_height": 720,
+      "is_playlist": false,
+      "created_at": "2015-02-12T04:42:31Z",
+      "_id": 4989654544,
       "channel": {
-        "mature": null,
-        "background": "http://static-cdn.jtvnw.net/jtv_user_pictures/zisss-channel_background_image-06a9d8c1113e5b45.jpeg",
-        "updated_at": "2013-03-04T05:27:27Z",
-        "_id": 31795858,
-        "status": "Barb sets giveaway and making 500m DH set... Join Zisspire, earn Zeny, collect prizes!",
-        "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/zisss-profile_image-502d7c865c5e3a54-300x300.jpeg",
-        "teams": [ ],
-        "url": "http://www.twitch.tv/zisss",
-        "display_name": "Zisss",
-        "game": "Diablo III",
-        "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/zisss-channel_header_image-997348d7f0658115-640x125.jpeg",
-        "name": "zisss",
-        "delay": 0,
-        "video_banner": null,
+        "mature": false,
+        "status": "test status",
+        "broadcaster_language": "en",
+        "display_name": "test_channel",
+        "game": "StarCraft II: Heart of the Swarm",
+        "delay": null,
+        "language": "en",
+        "_id": 12345,
+        "name": "test_channel",
+        "created_at": "2007-05-22T10:39:54Z",
+        "updated_at": "2015-02-12T04:15:49Z",
+        "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+        "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+        "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+        "background": null,
+        "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+        "profile_banner_background_color": "null",
+        "partner": true,
+        "url": "http://www.twitch.tv/test_channel",
+        "views": 49144894,
+        "followers": 215780,
         "_links": {
-          "chat": "https://api.twitch.tv/kraken/chat/zisss",
-          "subscriptions": "https://api.twitch.tv/kraken/channels/zisss/subscriptions",
-          "features": "https://api.twitch.tv/kraken/channels/zisss/features",
-          "commercial": "https://api.twitch.tv/kraken/channels/zisss/commercial",
-          "stream_key": "https://api.twitch.tv/kraken/channels/zisss/stream_key",
-          "editors": "https://api.twitch.tv/kraken/channels/zisss/editors",
-          "videos": "https://api.twitch.tv/kraken/channels/zisss/videos",
-          "self": "https://api.twitch.tv/kraken/channels/zisss",
-          "follows": "https://api.twitch.tv/kraken/channels/zisss/follows"
-        },
-        "created_at": "2012-07-01T21:09:58Z"
+          "self": "https://api.twitch.tv/kraken/channels/test_channel",
+          "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+          "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+          "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+          "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+          "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+          "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+          "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+          "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+          "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+        }
       },
-      "viewers": 775,
+      "preview": {
+        "small": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-80x45.jpg",
+        "medium": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-320x180.jpg",
+        "large": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-640x360.jpg",
+        "template": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-{width}x{height}.jpg"
+      },
       "_links": {
-        "self": "https://api.twitch.tv/kraken/streams/zisss"
+        "self": "https://api.twitch.tv/kraken/streams/test_channel"
       }
-    }
+    },
+    ...
   ],
   "_links": {
     "summary": "https://api.twitch.tv/kraken/streams/summary",
     "followed": "https://api.twitch.tv/kraken/streams/followed",
-    "next": "https://api.twitch.tv/kraken/streams?channel=zisss%2Cvoyboy&game=Diablo+III&limit=100&offset=100",
+    "next": "https://api.twitch.tv/kraken/streams?channel=test_channel%2Ctest_channel2&game=StarCraft+II%3A+Heart+of+the+Swarm&limit=100&offset=100",
     "featured": "https://api.twitch.tv/kraken/streams/featured",
-    "self": "https://api.twitch.tv/kraken/streams?channel=zisss%2Cvoyboy&game=Diablo+III&limit=100&offset=0"
+    "self": "https://api.twitch.tv/kraken/streams?channel=test_channel%2Ctest_channel2&game=StarCraft+II%3A+Heart+of+the+Swarm&limit=100&offset=0"
   }
 }
 ```
@@ -248,12 +265,6 @@ Returns a list of featured (promoted) stream objects.
             <td>integer</td>
             <td>Object offset for pagination. Default is 0.</td>
         </tr>
-        <tr>
-            <td><code>hls</code></td>
-            <td>optional</td>
-            <td>bool</td>
-            <td>If set to true, only returns streams using HLS</td>
-        </tr>
     </tbody>
 </table>
 
@@ -276,10 +287,63 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' \
   },
   "featured": [
     {
-      "image": "http://s.jtvnw.net/jtv_user_pictures/hosted_images/therun.jpg",
-      "text": "This is the run! Watch as multi-time world record Super Mario 64 gamer, Siglemic, pushes the N64 classic to its absolute limits.",
+      "image": "http://s.jtvnw.net/jtv_user_pictures/hosted_images/TwitchPartnerSpotlight.png",
+      "text": "<p>some html to describe this featured stream</p>",
+      "title": "Twitch Partner Spotlight",
+      "sponsored": false,
+      "scheduled": true,
       "stream": {
-        ...
+        "game": "StarCraft II: Heart of the Swarm",
+        "viewers": 2123,
+        "average_fps": 29.9880749574,
+        "delay": 0,
+        "video_height": 720,
+        "created_at": "2015-02-12T04:42:31Z",
+        "_id": 4989654544,
+        "channel": {
+          "mature": false,
+          "status": "test status",
+          "broadcaster_language": "en",
+          "display_name": "test_channel",
+          "game": "StarCraft II: Heart of the Swarm",
+          "delay": null,
+          "language": "en",
+          "_id": 12345,
+          "name": "test_channel",
+          "created_at": "2007-05-22T10:39:54Z",
+          "updated_at": "2015-02-12T04:15:49Z",
+          "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+          "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+          "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+          "background": null,
+          "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+          "profile_banner_background_color": "null",
+          "partner": true,
+          "url": "http://www.twitch.tv/test_channel",
+          "views": 49144894,
+          "followers": 215780,
+          "_links": {
+            "self": "https://api.twitch.tv/kraken/channels/test_channel",
+            "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+            "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+            "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+            "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+            "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+            "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+            "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+            "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+            "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+          }
+        },
+        "preview": {
+          "small": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-80x45.jpg",
+          "medium": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-320x180.jpg",
+          "large": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-640x360.jpg",
+          "template": "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-{width}x{height}.jpg"
+        },
+        "_links": {
+          "self": "https://api.twitch.tv/kraken/streams/test_channel"
+        }
       }
     },
     [...]
@@ -304,22 +368,10 @@ Returns a summary of current streams.
     </thead>
     <tbody>
         <tr>
-            <td><code>limit</code></td>
+            <td><code>game</code></td>
             <td>optional</td>
-            <td>integer</td>
-            <td>Maximum number of objects in array. Default is 25. Maximum is 100.</td>
-        </tr>
-        <tr>
-            <td><code>offset</code></td>
-            <td>optional</td>
-            <td>integer</td>
-            <td>Object offset for pagination. Default is 0.</td>
-        </tr>
-        <tr>
-            <td><code>hls</code></td>
-            <td>optional</td>
-            <td>bool</td>
-            <td>If set to true, only returns streams using HLS</td>
+            <td>string</td>
+            <td>Only show stats for the set game</td>
         </tr>
     </tbody>
 </table>
@@ -353,4 +405,4 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' \
 
 [See here for embedding.][embedding]
 
-[embedding]: /embedding.md#embedding-streams-vods-and-chat
+[embedding]: /embed-video.md#embedding-twitch-live-streams--videos

@@ -1,7 +1,5 @@
 # Follows
 
-***
-
 Status of follow relationships between [users][users] and [channels][channels].
 
 | Endpoint | Description |
@@ -42,7 +40,13 @@ Returns a list of follow objects.
             <td><code>offset</code></td>
             <td>optional</td>
             <td>integer</td>
-            <td>Object offset for pagination. Default is 0.</td>
+            <td>(deprecated) Object offset for pagination. Default is 0. Maximum is 1600.</td>
+        </tr>
+        <tr>
+            <td><code>cursor</code></td>
+            <td>optional</td>
+            <td>string</td>
+            <td>Twitch uses cursoring to paginate long lists of followers. Check <code>_cursor</code> in response body and set <code>cursor</code> to this value to get the next page of results, or use <code>_links.next</code> to navigate to the next page of results.</td>
         </tr>
         <tr>
             <td><code>direction</code></td>
@@ -66,20 +70,23 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' \
 {
   "_total": 1234,
   "_links": {
-    "next": "https://api.twitch.tv/kraken/channels/test_user1/follows?direction=DESC&limit=25&offset=25",
-    "self": "https://api.twitch.tv/kraken/channels/test_user1/follows?direction=DESC&limit=25&offset=0"
+    "self": "https://api.twitch.tv/kraken/channels/test_user1/follows?direction=DESC&limit=25",
+    "next": "https://api.twitch.tv/kraken/channels/test_user1/follows?cursor=1364170340354965000&direction=DESC&limit=25"
   },
+  "_cursor": "1364170340354965000",
   "follows": [
     {
       "created_at": "2013-06-02T09:38:45Z",
       "_links": {
         "self": "https://api.twitch.tv/kraken/users/test_user2/follows/channels/test_user1"
       },
+      "notifications": true,
       "user": {
         "_links": {
           "self": "https://api.twitch.tv/kraken/users/test_user2"
         },
-        "staff": false,
+        "type": "user",
+        "bio": "test user's bio",
         "logo": null,
         "display_name": "test_user2",
         "created_at": "2013-02-06T21:21:57Z",
@@ -131,7 +138,7 @@ Returns a list of follows objects.
             <td><code>sortby</code></td>
             <td>optional</td>
             <td>string</td>
-            <td>Sort key. Default is <code>created_at</code>. Valid values are <code>created_at</code> and <code>last_broadcast</code>.</td>
+            <td>Sort key. Default is <code>created_at</code>. Valid values are <code>created_at</code>, <code>last_broadcast</code>, and <code>login</code>.</td>
         </tr>
     </tbody>
 </table>
@@ -151,38 +158,48 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' \
     "next": "https://api.twitch.tv/kraken/users/test_user1/follows/channels?direction=DESC&limit=25&offset=25",
     "self": "https://api.twitch.tv/kraken/users/test_user1/follows/channels?direction=DESC&limit=25&offset=0"
   },
+  "_total": 32,
   "follows": [
     {
       "created_at": "2013-06-02T09:38:45Z",
       "_links": {
         "self": "https://api.twitch.tv/kraken/users/test_user1/follows/channels/test_channel"
       },
+      "notifications": true,
       "channel": {
-        "banner": null,
-        "_id": 1,
-        "url": "http://www.twitch.tv/test_channel",
-        "mature": null,
-        "teams": [
-
-        ],
-        "status": null,
-        "logo": null,
-        "name": "test_channel",
-        "video_banner": null,
+        "mature": false,
+        "status": "test status",
+        "broadcaster_language": "en",
         "display_name": "test_channel",
-        "created_at": "2007-05-22T10:37:47Z",
+        "game": "Gaming Talk Shows",
         "delay": 0,
-        "game": null,
+        "language": "en",
+        "_id": 12345,
+        "name": "test_channel",
+        "created_at": "2007-05-22T10:39:54Z",
+        "updated_at": "2015-02-12T04:15:49Z",
+        "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+        "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+        "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+        "background": null,
+        "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+        "profile_banner_background_color": "null",
+        "partner": true,
+        "url": "http://www.twitch.tv/test_channel",
+        "views": 49144894,
+        "followers": 215780,
         "_links": {
-          "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
           "self": "https://api.twitch.tv/kraken/channels/test_channel",
-          "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos",
+          "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
           "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+          "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
           "chat": "https://api.twitch.tv/kraken/chat/test_channel",
-          "features": "https://api.twitch.tv/kraken/channels/test_channel/features"
-        },
-        "updated_at": "2008-02-12T06:04:29Z",
-        "background": null
+          "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+          "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+          "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+          "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+          "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+        }
       }
     },
     ...
@@ -213,33 +230,45 @@ Otherwise,
 
 ```json
 {
+  "created_at": "2013-06-02T09:38:45Z",
   "_links": {
     "self": "https://api.twitch.tv/kraken/users/test_user1/follows/channels/test_channel"
   },
+  "notifications": true,
   "channel": {
-    "name": "test_channel",
-    "game": null,
-    "created_at": "2011-05-01T14:50:12Z",
-    "teams": [],
-    "background": null,
-    "updated_at": "2012-10-13T18:18:43Z",
-    "banner": null,
-    "delay": 0,
-    "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-9bd02ad8f4f5bc97-300x300.jpeg",
-    "url": "http://www.twitch.tv/test_channel",
-    "_links": {
-      "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
-      "self": "https://api.twitch.tv/kraken/channels/test_channel",
-      "chat": "https://api.twitch.tv/kraken/chat/test_channel",
-      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
-      "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos",
-      "features": "https://api.twitch.tv/kraken/channels/test_channel/features"
-    },
-    "_id": 22125774,
-    "mature": true,
-    "video_banner": null,
+    "mature": false,
+    "status": "test status",
+    "broadcaster_language": "en",
     "display_name": "test_channel",
-    "status": "Not Live"
+    "game": "Gaming Talk Shows",
+    "delay": 0,
+    "language": "en",
+    "_id": 12345,
+    "name": "test_channel",
+    "created_at": "2007-05-22T10:39:54Z",
+    "updated_at": "2015-02-12T04:15:49Z",
+    "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+    "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+    "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+    "background": null,
+    "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+    "profile_banner_background_color": "null",
+    "partner": true,
+    "url": "http://www.twitch.tv/test_channel",
+    "views": 49144894,
+    "followers": 215780,
+    "_links": {
+      "self": "https://api.twitch.tv/kraken/channels/test_channel",
+      "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+      "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+      "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+      "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+      "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+      "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+      "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+      "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+    }
   }
 }
 ```
@@ -248,7 +277,13 @@ Otherwise,
 
 Adds `:user` to `:target`'s followers. `:user` is the authenticated user's name and `:target` is the name of the channel to be followed.
 
-*__Authenticated__*, require scope: `user_follows_edit`
+*__Authenticated__*, required scope: `user_follows_edit`
+
+### Parameters
+
+| Name            | Required? | Type    | Description                                                                                                                                      |
+|:----------------|:----------|:--------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
+| `notifications` | optional  | boolean | Whether `:user` should receive email/push notifications (depending on their notification settings) when `:target` goes live. Default is `false`. |
 
 ### Example Request
 
@@ -261,33 +296,45 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
 
 ```json
 {
+  "created_at": "2013-06-02T09:38:45Z",
   "_links": {
     "self": "https://api.twitch.tv/kraken/users/test_user1/follows/channels/test_channel"
   },
+  "notifications": false,
   "channel": {
-    "name": "test_channel",
-    "game": null,
-    "created_at": "2011-05-01T14:50:12Z",
-    "teams": [],
-    "background": null,
-    "updated_at": "2012-10-13T18:18:43Z",
-    "delay": 0,
-    "banner": null,
-    "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-9bd02ad8f4f5bc97-300x300.jpeg",
-    "_links": {
-      "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
-      "self": "https://api.twitch.tv/kraken/channels/test_channel",
-      "chat": "https://api.twitch.tv/kraken/chat/test_channel",
-      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
-      "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos",
-      "features": "https://api.twitch.tv/kraken/channels/test_channel/features"
-    },
-    "url": "http://www.twitch.tv/test_channel",
-    "_id": 22125774,
-    "mature": true,
-    "video_banner": null,
+    "mature": false,
+    "status": "test status",
+    "broadcaster_language": "en",
     "display_name": "test_channel",
-    "status": "Not Live"
+    "game": "Gaming Talk Shows",
+    "delay": 0,
+    "language": "en",
+    "_id": 12345,
+    "name": "test_channel",
+    "created_at": "2007-05-22T10:39:54Z",
+    "updated_at": "2015-02-12T04:15:49Z",
+    "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-94a42b3a13c31c02-300x300.jpeg",
+    "banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_header_image-08dd874c17f39837-640x125.png",
+    "video_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-channel_offline_image-b314c834d210dc1a-640x360.png",
+    "background": null,
+    "profile_banner": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_banner-6936c61353e4aeed-480.png",
+    "profile_banner_background_color": "null",
+    "partner": true,
+    "url": "http://www.twitch.tv/test_channel",
+    "views": 49144894,
+    "followers": 215780,
+    "_links": {
+      "self": "https://api.twitch.tv/kraken/channels/test_channel",
+      "follows": "https://api.twitch.tv/kraken/channels/test_channel/follows",
+      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+      "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+      "chat": "https://api.twitch.tv/kraken/chat/test_channel",
+      "features": "https://api.twitch.tv/kraken/channels/test_channel/features",
+      "subscriptions": "https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+      "editors": "https://api.twitch.tv/kraken/channels/test_channel/editors",
+      "teams": "https://api.twitch.tv/kraken/channels/test_channel/teams",
+      "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos"
+    }
   }
 }
 ```
@@ -321,4 +368,4 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
 
 [See the Users resource][users]
 
-[users]: /resources/users.md
+[users]: /v3_resources/users.md

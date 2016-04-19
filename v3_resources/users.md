@@ -1,7 +1,5 @@
 # Users
 
-***
-
 These are members of the Twitch community who have a Twitch account. If broadcasting, they can own a [stream][streams] that they can broadcast on their [channel][channels]. If mainly viewing, they might [follow][follows] or [subscribe][subscriptions] to channels.
 
 | Endpoint | Description |
@@ -74,7 +72,11 @@ curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <acc
   "display_name": "test_user1",
   "email": "asdf@asdf.com",
   "partnered": true,
-  "bio": "test bio woo I'm a test user"
+  "bio": "test bio woo I'm a test user",
+  "notifications": {
+    "email": true,
+    "push": false
+  }
 }
 ```
 
@@ -109,10 +111,10 @@ Returns a list of stream objects that the authenticated user is following.
             <td>Object offset for pagination. Default is 0.</td>
         </tr>
         <tr>
-            <td><code>hls</code></td>
+            <td><code>stream_type</code></td>
             <td>optional</td>
-            <td>bool</td>
-            <td>If set to true, only returns game objects with streams using HLS</td>
+            <td>string</td>
+            <td>Only shows streams from a certain type. Permitted values: <code>all</code>, <code>playlist</code>, <code>live</code></td>
         </tr>
     </tbody>
 </table>

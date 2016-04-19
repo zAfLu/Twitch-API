@@ -1,7 +1,5 @@
 # Follows
 
-***
-
 Status of follow relationships between [users][users] and [channels][channels].
 
 | Endpoint | Description |
@@ -64,9 +62,11 @@ curl -H 'Accept: application/vnd.twitchtv.v2+json' \
   },
   "follows": [
     {
+      "created_at": "2015-02-12T01:13:35Z",
       "_links": {
         "self": "https://api.twitch.tv/kraken/users/test_user2/follows/channels/test_user1"
       },
+      "notifications": true,
       "user": {
         "_links": {
           "self": "https://api.twitch.tv/kraken/users/test_user2"
@@ -133,31 +133,34 @@ curl -H 'Accept: application/vnd.twitchtv.v2+json' \
   },
   "follows": [
     {
+      "created_at": "2015-02-07T07:36:33Z",
       "_links": {
         "self": "https://api.twitch.tv/kraken/users/test_user1/follows/channels/test_channel"
       },
+      "notifications": true,
       "channel": {
         "banner": null,
-        "_id": 1,
+        "_id": 123456,
         "url": "http://www.twitch.tv/test_channel",
-        "mature": null,
-        "teams": [
-
-        ],
+        "teams": [],
         "status": null,
         "logo": null,
         "name": "test_channel",
         "video_banner": null,
+        "mature": false,
         "display_name": "test_channel",
         "created_at": "2007-05-22T10:37:47Z",
         "game": null,
         "_links": {
-          "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
           "self": "https://api.twitch.tv/kraken/channels/test_channel",
+          "chat": "https://api.twitch.tv/kraken/chat/test_channel",
           "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos",
           "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
-          "chat": "https://api.twitch.tv/kraken/chat/test_channel",
-          "features": "https://api.twitch.tv/kraken/channels/test_channel/features"
+          "follows":"https://api.twitch.tv/kraken/channels/test_channel/follows",
+          "stream_key":"https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+          "features":"https://api.twitch.tv/kraken/channels/test_channel/features",
+          "subscriptions":"https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+          "editors":"https://api.twitch.tv/kraken/channels/test_channel/editors"
         },
         "updated_at": "2008-02-12T06:04:29Z",
         "background": null
@@ -191,9 +194,11 @@ Otherwise,
 
 ```json
 {
+  "created_at": "2015-02-07T07:36:33Z",
   "_links": {
     "self": "https://api.twitch.tv/kraken/users/test_user1/follows/channels/test_channel"
   },
+  "notifications": true,
   "channel": {
     "name": "test_channel",
     "game": null,
@@ -205,12 +210,15 @@ Otherwise,
     "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-9bd02ad8f4f5bc97-300x300.jpeg",
     "url": "http://www.twitch.tv/test_channel",
     "_links": {
-      "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
       "self": "https://api.twitch.tv/kraken/channels/test_channel",
       "chat": "https://api.twitch.tv/kraken/chat/test_channel",
-      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
       "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos",
-      "features": "https://api.twitch.tv/kraken/channels/test_channel/features"
+      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+      "follows":"https://api.twitch.tv/kraken/channels/test_channel/follows",
+      "stream_key":"https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+      "features":"https://api.twitch.tv/kraken/channels/test_channel/features",
+      "subscriptions":"https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+      "editors":"https://api.twitch.tv/kraken/channels/test_channel/editors"
     },
     "_id": 22125774,
     "mature": true,
@@ -225,7 +233,13 @@ Otherwise,
 
 Adds `:user` to `:target`'s followers. `:user` is the authenticated user's name and `:target` is the name of the channel to be followed.
 
-*__Authenticated__*, require scope: `user_follows_edit`
+### Parameters
+
+| Name            | Required? | Type    | Description                                                                                                                                      |
+|:----------------|:----------|:--------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
+| `notifications` | optional  | boolean | Whether `:user` should receive email/push notifications (depending on their notification settings) when `:target` goes live. Default is `false`. |
+
+*__Authenticated__*, required scope: `user_follows_edit`
 
 ### Example Request
 
@@ -238,9 +252,11 @@ curl -H 'Accept: application/vnd.twitchtv.v2+json' -H 'Authorization: OAuth <acc
 
 ```json
 {
+  "created_at": "2015-02-07T07:36:33Z",
   "_links": {
     "self": "https://api.twitch.tv/kraken/users/test_user1/follows/channels/test_channel"
   },
+  "notifications": false,
   "channel": {
     "name": "test_channel",
     "game": null,
@@ -251,12 +267,15 @@ curl -H 'Accept: application/vnd.twitchtv.v2+json' -H 'Authorization: OAuth <acc
     "banner": null,
     "logo": "http://static-cdn.jtvnw.net/jtv_user_pictures/test_channel-profile_image-9bd02ad8f4f5bc97-300x300.jpeg",
     "_links": {
-      "stream_key": "https://api.twitch.tv/kraken/channels/test_channel/stream_key",
       "self": "https://api.twitch.tv/kraken/channels/test_channel",
       "chat": "https://api.twitch.tv/kraken/chat/test_channel",
-      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
       "videos": "https://api.twitch.tv/kraken/channels/test_channel/videos",
-      "features": "https://api.twitch.tv/kraken/channels/test_channel/features"
+      "commercial": "https://api.twitch.tv/kraken/channels/test_channel/commercial",
+      "follows":"https://api.twitch.tv/kraken/channels/test_channel/follows",
+      "stream_key":"https://api.twitch.tv/kraken/channels/test_channel/stream_key",
+      "features":"https://api.twitch.tv/kraken/channels/test_channel/features",
+      "subscriptions":"https://api.twitch.tv/kraken/channels/test_channel/subscriptions",
+      "editors":"https://api.twitch.tv/kraken/channels/test_channel/editors"
     },
     "url": "http://www.twitch.tv/test_channel",
     "_id": 22125774,
