@@ -211,7 +211,7 @@ Update channel's properties.
             <td><code>broadcaster_language</code></td>
             <td>optional</td>
             <td>string</td>
-            <td>Channel language as short cut. Values are (<b>NOTE: Use only the bold shortcuts</b>): <b>de</b> (Deutsch), <b>en</b> (English), <b>da</b> (Dansk), <b>es</b> (Español), <b>fr</b> (Français), <b>it</b> (Français), <b>hu</b> (Magyar), <b>nl</b> (Nederlands), <b>no</b> (Norsk), <b>pl</b> (Polski), <b>pt</b> (Português), <b>sk</b> (Slovenčina), <b>fi</b> (Suomi), <b>sv</b> (Svenska), <b>tr</b> (Türkçe), <b>cs</b> (Čeština), <b>ru</b> (Русский), <b>zh</b> (中文), <b>ja</b> (日本語) and  <b>ko</b> (한국어) </td>
+            <td>Channel language as short cut. Values are (NOTE: Use only the bold shortcuts): <b>de</b> (Deutsch), <b>en</b> (English), <b>da</b> (Dansk), <b>es</b> (Español), <b>fr</b> (Français), <b>it</b> (Français), <b>hu</b> (Magyar), <b>nl</b> (Nederlands), <b>no</b> (Norsk), <b>pl</b> (Polski), <b>pt</b> (Português), <b>sk</b> (Slovenčina), <b>fi</b> (Suomi), <b>sv</b> (Svenska), <b>tr</b> (Türkçe), <b>cs</b> (Čeština), <b>ru</b> (Русский), <b>zh</b> (中文), <b>ja</b> (日本語) and  <b>ko</b> (한국어) </td>
         </tr>
         <tr>
             <td><code>channel_feed_enabled</code></td>
